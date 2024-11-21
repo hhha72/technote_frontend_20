@@ -1,8 +1,7 @@
 import { useAuthApi } from "~/stores/api/auth";
-import { ofetch } from "ofetch";
-import { Input } from "postcss";
 
 export default defineNuxtPlugin((nuxtApp) => {
+    const { userId, refreshToken: getRefreshToken } = useAuthStore();
     const { refreshSession } = useAuthApi();
     const originalFetch = global.fetch;
 
@@ -33,8 +32,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     async function refreshTokenFunc() {
         try {
-            const id = localStorage.getItem('id');
-            const refreshToken = localStorage.getItem('refreshToken');
+            const id = userId();
+            const refreshToken = getRefreshToken();
             if (!id || !refreshToken) {
                 throw new Error('id or refreshToken is null');
             }
