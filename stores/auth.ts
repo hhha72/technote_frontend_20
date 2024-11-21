@@ -7,7 +7,7 @@ const storage = new EncryptStorage('5Kozu813wFpR3KelBvb8Rpv8DtZXay5IR41aHP4UcDU=
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: null,
+        user: storage.getItem('PERSONAL_SESSION'),
     }),
     getters: {
         isAuthenticated: (state) => !!state.user,
@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
             if (res.result) {
                 const { row } = res;
                 this.user = row;
-                storage.setItem('PERSONAL_SESSION', JSON.stringify(row));
+                storage.setItem('PERSONAL_SESSION', row);
             }
         },
         logout() {
