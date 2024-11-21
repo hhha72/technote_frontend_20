@@ -1,10 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
   ],
+  plugins: ['~/plugins/api'],
   css: ['~/assets/css/main.css'],
+  nitro: {
+    devProxy: {
+      '/api': {
+        target: process.env.BACKEND_API,
+        changeOrigin: true,
+        // prependPath: true,
+        autoRewrite: true,
+      }
+    }
+  },
   app: {
     head: {
       title: 'TrueHacker\'s TechNote',

@@ -10,7 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@pinia/nuxt": "^0.7.0",
+    "encrypt-storage": "^2.13.3",
     "nuxt": "^3.14.1592",
+    "pinia": "^2.2.6",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -18,5 +22,8 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
