@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
   ],
-  plugins: ['~/plugins/api'],
+  plugins: ['~/plugins/api.client'],
   css: ['~/assets/css/main.css'],
   nitro: {
     devProxy: {
