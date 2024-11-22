@@ -31,16 +31,16 @@ export default defineNuxtConfig({
       ],
     }
   },
-  vite: {  
-    optimizeDeps: {
-      esbuildOptions: {
-        define: {
-          // global: 'globalThis'
-          global: 'window'
-        }
-      }
-    },
-  },
+  // vite: {  
+  //   optimizeDeps: {
+  //     esbuildOptions: {
+  //       define: {
+  //         // global: 'globalThis'
+  //         global: 'window'
+  //       }
+  //     }
+  //   },
+  // },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true }
 })
