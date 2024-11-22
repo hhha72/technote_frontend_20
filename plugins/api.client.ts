@@ -1,9 +1,14 @@
 import { useAuthApi } from "~/stores/api/auth";
 
 export default defineNuxtPlugin((nuxtApp) => {
+    // if (typeof global === 'undefined') {
+    //     console.error('global is undefined');
+    //     return;
+    // }
+    // nuxtApp.provide('fetch', global.fetch);
     const { userId, refreshToken: getRefreshToken } = useAuthStore();
     const { refreshSession } = useAuthApi();
-    const originalFetch = global.fetch;
+    const originalFetch = globalThis.fetch;
 
     let isRefreshing = false;
     let refreshPromise: Promise<void> | null = null;
@@ -51,7 +56,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
     }
 
-    global.fetch = customFetch;
+    globalThis.fetch = customFetch;
     
     return {
         provide: {
