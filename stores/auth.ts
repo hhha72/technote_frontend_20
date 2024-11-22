@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { encryptStorage } from '@/utils/storage';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
