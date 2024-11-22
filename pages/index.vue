@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col min-h-screen bg-blue">
-        <h>메인 페이지</h>
+        <h1>메인 페이지</h1>
     </div>
 </template>
 
