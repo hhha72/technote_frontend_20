@@ -1,5 +1,6 @@
 import type { LoginReqDto, ResetPasswordDto, SearchPasswordDto } from "~/types/dto/auth.dto";
 import type { ResponseDto } from "~/types/dto/response.dto";
+import { useAuthStore } from "~/stores/auth";
 
 export const useAuthApi = defineStore('auth', {
     state: () => ({}),
@@ -11,7 +12,12 @@ export const useAuthApi = defineStore('auth', {
                     body: JSON.stringify(payload),
                 });
                 if (response.ok) {
-                    return await response.json();
+                    const resLogin = await response.json();
+                    if (resLogin.result) {
+                        const authStore = useAuthStore();
+                        authStore.setUser(resLogin.row);
+                    }
+                    return resLogin;
                 }
                 else if (response.headers.get('content-type')?.includes('application/json')) {
                     return await response.json();
@@ -37,6 +43,8 @@ export const useAuthApi = defineStore('auth', {
                 const response = await fetch('/backapi/logout', {
                     method: 'GET',
                 });
+                const { clearUser } = useAuthStore();
+                clearUser();
                 if (response.ok) {
                     return await response.json();
                 }
@@ -120,7 +128,12 @@ export const useAuthApi = defineStore('auth', {
                     body: JSON.stringify({ id, refreshToken }),
                 });
                 if (response.ok) {
-                    return await response.json();
+                    const resLogin = await response.json();
+                    if (resLogin.result) {
+                        const { setUser } = useAuthStore();
+                        setUser(resLogin.row);
+                    }
+                    return resLogin;
                 }
                 else if (response.headers.get('content-type')?.includes('application/json')) {
                     return await response.json();
