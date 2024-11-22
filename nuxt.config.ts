@@ -4,7 +4,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
   ],
-  plugins: ['~/plugins/api.client'],
+  components: [
+    '~/components',
+    '~/components/layout',
+  ],
   css: ['~/assets/css/main.css'],
   nitro: {
     devProxy: {
@@ -27,6 +30,16 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
     }
+  },
+  vite: {  
+    optimizeDeps: {
+      esbuildOptions: {
+        define: {
+          // global: 'globalThis'
+          global: 'window'
+        }
+      }
+    },
   },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true }
