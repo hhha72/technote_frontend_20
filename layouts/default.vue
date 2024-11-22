@@ -4,7 +4,7 @@
 		<div class="flex flex-grow">
 			<AppSidebar :is-open="isSidebarOpen" />
 			<div class="flex-grow p-4">
-				<NuxtPage />
+				<slot />
 			</div>
 		</div>
 		<AppFooter />
